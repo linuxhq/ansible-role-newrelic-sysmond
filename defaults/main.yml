@@ -1,0 +1,4 @@
+---
+newrelic_sysmond_logfile: /var/log/newrelic/nrsysmond.log
+newrelic_sysmond_loglevel: info
+newrelic_sysmond_runas: newrelic
