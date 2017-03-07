@@ -1,5 +1,7 @@
 ---
 - name: restart newrelic-sysmond
   tags: newrelic-sysmond
-  service: name=newrelic-sysmond
-           state=restarted
+  service:
+    name: newrelic-sysmond
+    state: restarted
+...
