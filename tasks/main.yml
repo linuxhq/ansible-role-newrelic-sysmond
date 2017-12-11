@@ -1,21 +1,15 @@
 ---
-- name: Assert that prerequisites exist
-  tags: newrelic-sysmond
-  assert:
-    that:
-      - newrelic_sysmond_license_key is defined
-
-- name: Ensure that newrelic-sysmond is installed
-  tags: newrelic-sysmond
+- name: Ensure that the newrelic-sysmond package is installed
+  tags: newrelic_sysmond
+  become: true
   yum:
     enablerepo: newrelic
     name: newrelic-sysmond
     state: present
-    update_cache: yes
   register: newrelic_sysmond_yum
 
 - block:
-  - name: Apply newrelic-sysmond configuration
+  - name: Applying newrelic-sysmond configurations
     template:
       src: "{{ item.src }}"
       dest: "{{ item.dst }}"
@@ -27,11 +21,12 @@
       - { src: nrsysmond.cfg.j2, dst: /etc/newrelic/nrsysmond.cfg, group: newrelic, mode: '0640' }
       - { src: newrelic-sysmond.sysconfig.j2, dst: /etc/sysconfig/newrelic-sysmond, group: root, mode: '0644' }
 
-  - name: Start the newrelic-sysmond service and enable on boot
+  - name: Enable and start the newrelic-sysmond service on boot
     service:
       enabled: yes
       name: newrelic-sysmond
       state: started
-  tags: newrelic-sysmond
+  tags: newrelic_sysmond
+  become: true
   when: newrelic_sysmond_yum|success
 ...
