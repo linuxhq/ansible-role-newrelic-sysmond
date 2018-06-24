@@ -2,20 +2,25 @@
 newrelic_sysmond_cfgfile: ''
 newrelic_sysmond_cgroup_root: /sys/fs/cgroup
 newrelic_sysmond_collector_host: collector.newrelic.com
-newrelic_sysmond_disable_docker: False
-newrelic_sysmond_disable_nfs: False
+newrelic_sysmond_disable_docker: false
+newrelic_sysmond_disable_nfs: false
 newrelic_sysmond_docker_cacert: ''
 newrelic_sysmond_docker_cert: ''
 newrelic_sysmond_docker_cert_path: ''
-newrelic_sysmond_docker_key: ''
 newrelic_sysmond_docker_connection: ''
+newrelic_sysmond_docker_key: ''
+newrelic_sysmond_host_root: /host
 newrelic_sysmond_hostname: "{{ inventory_hostname }}"
-newrelic_sysmond_ignore_reclaimable: True
+newrelic_sysmond_ignore_reclaimable: true
+newrelic_sysmond_labels: []
 newrelic_sysmond_license_key: REPLACE_WITH_REAL_KEY
 newrelic_sysmond_logfile: /var/log/newrelic/nrsysmond.log
 newrelic_sysmond_loglevel: info
 newrelic_sysmond_nrdaemon: ''
 newrelic_sysmond_pidfile: /var/run/newrelic/nrsysmond.pid
+newrelic_sysmond_proxy: ''
 newrelic_sysmond_runas: newrelic
-newrelic_sysmond_ssl: True
+newrelic_sysmond_ssl: true
+newrelic_sysmond_ssl_ca_bundle: ''
+newrelic_sysmond_ssl_ca_path: ''
 ...

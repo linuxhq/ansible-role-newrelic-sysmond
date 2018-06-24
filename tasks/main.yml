@@ -1,6 +1,6 @@
 ---
 - name: Ensure that the newrelic-sysmond package is installed
-  tags: newrelic_sysmond
+  tags: newrelic-sysmond
   become: true
   yum:
     enablerepo: newrelic
@@ -8,25 +8,27 @@
     state: present
   register: newrelic_sysmond_yum
 
-- block:
-  - name: Applying newrelic-sysmond configurations
-    template:
-      src: "{{ item.src }}"
-      dest: "{{ item.dst }}"
-      owner: root
-      group: "{{ item.group }}"
-      mode: "{{ item.mode }}"
-    notify: restart newrelic-sysmond
-    with_items:
-      - { src: nrsysmond.cfg.j2, dst: /etc/newrelic/nrsysmond.cfg, group: newrelic, mode: '0640' }
-      - { src: newrelic-sysmond.sysconfig.j2, dst: /etc/sysconfig/newrelic-sysmond, group: root, mode: '0644' }
-
-  - name: Enable and start the newrelic-sysmond service on boot
-    service:
-      enabled: yes
-      name: newrelic-sysmond
-      state: started
-  tags: newrelic_sysmond
+- name: Attempting to overlay newrelic-sysmond configurations
+  tags: newrelic-sysmond
   become: true
-  when: newrelic_sysmond_yum|success
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    owner: root
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  notify: restart newrelic-sysmond
+  with_items:
+    - { src: nrsysmond.cfg.j2, dst: /etc/newrelic/nrsysmond.cfg, group: newrelic, mode: '0640' }
+    - { src: newrelic-sysmond.sysconfig.j2, dst: /etc/sysconfig/newrelic-sysmond, group: root, mode: '0644' }
+  when: newrelic_sysmond_yum is success
+
+- name: Enable and start the newrelic-sysmond service on boot
+  tags: newrelic-sysmond
+  become: true
+  service:
+    enabled: yes
+    name: newrelic-sysmond
+    state: started
+  when: newrelic_sysmond_yum is success
 ...

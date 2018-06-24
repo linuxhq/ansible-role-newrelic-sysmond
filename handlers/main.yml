@@ -1,6 +1,6 @@
 ---
 - name: restart newrelic-sysmond
-  tags: newrelic_sysmond
+  tags: newrelic-sysmond
   become: true
   service:
     name: newrelic-sysmond
