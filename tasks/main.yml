@@ -1,6 +1,6 @@
 ---
 - name: Ensure that the newrelic-sysmond package is installed
-  tags: newrelic-sysmond
+  tags: newrelic_sysmond
   become: true
   yum:
     enablerepo: newrelic
@@ -9,7 +9,7 @@
   register: newrelic_sysmond_yum
 
 - name: Attempting to overlay newrelic-sysmond configurations
-  tags: newrelic-sysmond
+  tags: newrelic_sysmond
   become: true
   template:
     src: "{{ item.src }}"
@@ -24,7 +24,7 @@
   when: newrelic_sysmond_yum is success
 
 - name: Enable and start the newrelic-sysmond service on boot
-  tags: newrelic-sysmond
+  tags: newrelic_sysmond
   become: true
   service:
     enabled: yes

@@ -1,7 +1,7 @@
-# ansible-role-newrelic-sysmond
+# ansible-role-newrelic_sysmond
 
-[![Build Status](https://travis-ci.org/linuxhq/ansible-role-newrelic-sysmond.svg?branch=master)](https://travis-ci.org/linuxhq/ansible-role-newrelic-sysmond)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-newrelic--sysmond-blue.svg?style=flat)](https://galaxy.ansible.com/linuxhq/newrelic-sysmond)
+[![Build Status](https://travis-ci.org/linuxhq/ansible-role-newrelic_sysmond.svg?branch=master)](https://travis-ci.org/linuxhq/ansible-role-newrelic_sysmond)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-newrelic_sysmond-blue.svg?style=flat)](https://galaxy.ansible.com/linuxhq/newrelic_sysmond)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](COPYING)
 
 RHEL/CentOS - NewRelic nrsysmond
@@ -49,7 +49,7 @@ None
 
     - hosts: servers
       roles:
-        - role: linuxhq.newrelic-sysmond
+        - role: linuxhq.newrelic_sysmond
           newrelic_sysmond_license_key: a62ae178defeb26006cec54baf5055a4
           newrelic_sysmond_labels:
             - Environment:Production
